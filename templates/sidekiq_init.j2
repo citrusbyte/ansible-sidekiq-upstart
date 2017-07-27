@@ -1,5 +1,5 @@
 #!upstart
-description "Upstart Script for a Rails process"
+description "Upstart Script for a Cuba process"
 
 start on startup
 stop on runlevel [06]
@@ -19,6 +19,6 @@ kill timeout 15
 
 script
 exec /bin/bash <<'EOT'
-  exec bundle exec sidekiq -C ./config/sidekiq.yml -e {{ server_env }}
+  exec sidekiq -C ./config/sidekiq.yml -e {{ server_env }} -r ./app.rb
 EOT
 end script
